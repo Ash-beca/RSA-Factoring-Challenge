@@ -1,0 +1,32 @@
+
+def isPrime(n):
+    if n == 2:
+        return True
+    for i in range(2, n): 
+        if n%i == 0:
+            return False
+        else:
+            return True
+
+numbers = []
+
+with open("factors", "r") as file1:
+    for line in file1:
+        numbers.append(int(line.split()[0]))
+
+
+for n in numbers:
+    primes = []
+    product = []
+    for i in range(2, n):
+        if n%i == 0 and isPrime(i):
+            primes.append(i)
+
+    for k in range(len(primes)):
+        for j in range(len(primes)):
+            if primes[k] * primes[j] == n:
+                product.append(primes[j])
+                product.append(primes[k])
+                break
+        
+    print(f"{n}={product[0]}*{product[1]}")
